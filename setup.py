@@ -1,6 +1,14 @@
 from distutils.core import setup
+from setuptools import find_packages
 
-from ed_analytics.consts import AUTHOR, AUTHOR_EMAIL, DESCRIPTION, LONG_DESCRIPTION, MAINTAINER, MAINTAINER_EMAIL, NAME, VERSION
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+
+from ed_analytics.consts import AUTHOR, AUTHOR_EMAIL, DESCRIPTION, MAINTAINER, MAINTAINER_EMAIL, NAME, VERSION
+
+
+with open("README.md") as f:
+    LONG_DESCRIPTION = f.read()
 
 
 setup(
@@ -30,5 +38,7 @@ setup(
         "Programming Language :: Python :: Implementation :: CPython",
         "Intended Audience :: Education"
     ],
-    package_dir=["ed_analytics"],
+    package_dir={'': "."},
+    packages=find_packages("."),
+    python_requires=">=3.6"
 )
