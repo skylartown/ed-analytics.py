@@ -1,4 +1,5 @@
 
+
 NAME = "ed-analytics.py"
 VERSION = "1.0.1"
 
@@ -11,4 +12,6 @@ MAINTAINER = "Shreyas Ranganatha"
 MAINTAINER_EMAIL = "shreyass.ranganatha@gmail.com"
 
 if __name__ == '__main__':
-    quit(print(f"{NAME} [{VERSION}]"))
+    quit(print(f"{NAME} `{VERSION}`"))
+
+
