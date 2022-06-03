@@ -1,3 +1,4 @@
+import requests
 
 from typing import Sequence
 from ed_analytics.abc import Commit
