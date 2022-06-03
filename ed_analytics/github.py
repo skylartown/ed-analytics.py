@@ -6,7 +6,7 @@ from ed_analytics.abc import Commit
 class Repository:
     def __init__(self, owner: str, reponame: str) -> None:
         self.owner: str = owner
-        self.reponame: str = self.reponame
+        self.reponame: str = reponame
         
         self.__oauth_token: str = None
 
