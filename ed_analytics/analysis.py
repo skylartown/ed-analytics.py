@@ -1,9 +1,7 @@
-import csv
-from typing import Any, Dict
+"""
 
-from ed_analytics.abc import Submission
-
-'''
+P.S. Srinivasan Sir's Notes
+----------------------
 What will class method return.
 it returns a customized class.
 x = classAssignment()
@@ -13,8 +11,14 @@ __init__ - returns object of the class
 
 Object frominit has submissions as a dictionary python object.
 Object from_assignment_grade 
+"""
 
-'''
+import csv
+from typing import Dict
+
+from ed_analytics.abc import Submission
+
+
 class ClassroomAssignment:
     def __init__(self, submissions: Dict[str, Submission]) -> None:
         self.submissions = submissions
