@@ -1,4 +1,7 @@
 
+import requests
+import json
+
 from typing import Sequence
 from ed_analytics.abc import Commit
 
@@ -36,3 +39,23 @@ class Repository:
         ----------
         https://docs.github.com/en/rest/commits/commits#list-commits--parameters
         """
+      res={
+            'author':author,
+            'since':since,
+            'per_page':per_page,
+            'page':page,
+            'until':until
+        }
+
+        r=requests.get(url,params={
+            h:r
+            for h,r in res.items() 
+            if r is not None
+            })
+                    
+                
+
+        x=json.loads(r.text)
+        print(json.dumps(x ,indent=2))
+rp = Repository("skylartown", "ed-analytics.py")
+print(rp.get_commits())
