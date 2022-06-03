@@ -1,16 +1,17 @@
 
-
 from typing import Sequence
-
 from ed_analytics.abc import Commit
 
 
 class Repository:
     def __init__(self, owner: str, reponame: str) -> None:
-        self.__oauth_token = None
+        self.owner: str = owner
+        self.reponame: str = self.reponame
+        
+        self.__oauth_token: str = None
 
     def authenticate(self, oauth_token):
-        self.__oauth_token = oauth_token
+        self.__oauth_token: str = oauth_token
 
     def get_commits(self, author: str = None, since: str = None, per_page: int = None, page: int = None, until: str = None) -> Sequence[Commit]:
         """
