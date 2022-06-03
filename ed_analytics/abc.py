@@ -1,5 +1,9 @@
 
 
+class Commit(dict):
+    pass
+
+
 class Submission:
     """
     Class to contain individual assignment submission operations
