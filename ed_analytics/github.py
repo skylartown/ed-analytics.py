@@ -36,3 +36,32 @@ class Repository:
         ----------
         https://docs.github.com/en/rest/commits/commits#list-commits--parameters
         """
+        
+        parameters = {
+            "author": author,
+            "since": since,
+            "per_page": per_page,
+            "until": until
+        }
+        
+        for i in range(*(
+            (1, 10 + 1) if page is None 
+            else (page, page + 1) )
+            ):
+            
+            parameters["page"] = i
+            
+            res = requests.get(
+                "https://api.github.com/repos/{}/{}/commits".format(self.owner, self.reponame),
+                params={
+                k: v
+                for k, v in parameters.items()
+                if v is not None
+                },
+                headers={"Authorization": "token {}".format(self.__oauth_token) if self.__oauth_token else None }
+            )
+            
+            if not res.json():
+                return
+            
+            yield [Commit(cmt) for cmt in res.json()]
