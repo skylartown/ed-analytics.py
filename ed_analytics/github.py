@@ -1,5 +1,3 @@
-
-from email import header
 from typing import Sequence
 from ed_analytics.abc import Commit
 import requests
