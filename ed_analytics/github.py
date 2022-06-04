@@ -1,6 +1,8 @@
 
+from textwrap import indent
 from typing import Sequence
 from ed_analytics.abc import Commit
+import requests
 
 
 class Repository:
@@ -36,3 +38,18 @@ class Repository:
         ----------
         https://docs.github.com/en/rest/commits/commits#list-commits--parameters
         """
+        repo_dict={
+            'author':author,
+            'since':since,
+            'per_page':per_page,
+            'page':page,
+            'until':until
+        }
+        commit_list=[]
+        url= requests.get('https://api.github.com/repos/{}/{}/commits'.format(self.owner,self.reponame),params=repo_dict)
+        x = url.json()
+        for i in x:
+            commit_class=Commit(i)
+            commit_list.append(commit_class)
+        
+        return commit_list
