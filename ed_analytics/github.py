@@ -54,11 +54,7 @@ class Repository:
             res = requests.get(
                 "https://api.github.com/repos/{}/{}/commits".format(
                     self.owner, self.reponame),
-                params={
-                    k: v
-                    for k, v in parameters.items()
-                    if v is not None
-                },
+                params=parameters,
                 headers={"Authorization": "token {}".format(
                     self.__oauth_token) if self.__oauth_token else None}
             )
