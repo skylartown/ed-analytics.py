@@ -55,8 +55,11 @@ class Repository:
                 "https://api.github.com/repos/{}/{}/commits".format(
                     self.owner, self.reponame),
                 params=parameters,
-                headers={"Authorization": "token {}".format(
-                    self.__oauth_token) if self.__oauth_token else None}
+                headers={
+                    "Authorization": "token {}".format(
+                        self.__oauth_token) if self.__oauth_token else None,
+                    "accept": "application/vnd.github.v3+json"
+                }
             )
 
             if not (js := res.json()):
