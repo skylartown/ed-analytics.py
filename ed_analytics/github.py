@@ -59,7 +59,7 @@ class Repository:
                     "Authorization": "token {}".format(
                         self.__oauth_token) if self.__oauth_token else None,
                     "accept": "application/vnd.github.v3+json",
-                    "User-Agent": self.owner
+                    "User-Agent": "ed-analytics.py"
                 }
             )
 
