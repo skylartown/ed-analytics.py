@@ -1,13 +1,13 @@
-
 from typing import Sequence
 from ed_analytics.abc import Commit
+import requests
 
 
 class Repository:
     def __init__(self, owner: str, reponame: str) -> None:
         self.owner: str = owner
         self.reponame: str = reponame
-        
+
         self.__oauth_token: str = None
 
     def authenticate(self, oauth_token):
@@ -22,7 +22,7 @@ class Repository:
 
         since : str
             since timestamp in ISO 8601 format YYYY-MM-DDTHH:MM:SSZ
-        
+
         per_page : int
             number of responses per page
 
@@ -36,3 +36,34 @@ class Repository:
         ----------
         https://docs.github.com/en/rest/commits/commits#list-commits--parameters
         """
+
+        parameters = {
+            "author": author,
+            "since": since,
+            "per_page": per_page,
+            "until": until
+        }
+
+        for i in range(*(
+            (1, 10 + 1) if page is None
+            else (page, page + 1))
+        ):
+
+            parameters["page"] = i
+
+            res = requests.get(
+                "https://api.github.com/repos/{}/{}/commits".format(
+                    self.owner, self.reponame),
+                params=parameters,
+                headers={
+                    "Authorization": "token {}".format(
+                        self.__oauth_token) if self.__oauth_token else None,
+                    "accept": "application/vnd.github.v3+json",
+                    "User-Agent": "ed-analytics.py"
+                }
+            )
+
+            if not (js := res.json()):
+                return
+
+            yield [Commit(cmt) for cmt in js]
