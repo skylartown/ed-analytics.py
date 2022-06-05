@@ -1,0 +1,12 @@
+
+P.S. Srinivasan Sir's Notes
+----------------------
+What will class method return.
+it returns a customized class.
+x = classAssignment()
+
+class methods of class will return a object of Classroom Assignment.
+__init__ - returns object of the class
+
+Object frominit has submissions as a dictionary python object.
+Object from_assignment_grade 
