@@ -13,5 +13,3 @@ MAINTAINER_EMAIL = "shreyass.ranganatha@gmail.com"
 
 if __name__ == '__main__':
     quit(print(f"{NAME} `{VERSION}`"))
-
-

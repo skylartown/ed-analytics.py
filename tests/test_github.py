@@ -1,6 +1,3 @@
-import context
+from context import pytest
 
-import ed_analytics.github as edg
-
-
-# ...
+from ed_analytics import github
