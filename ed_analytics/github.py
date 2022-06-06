@@ -11,7 +11,7 @@ class Repository:
 
         self.__oauth_token: str = None
 
-    def authenticate(self, oauth_token):
+    def authorise(self, oauth_token):
         self.__oauth_token: str = oauth_token
 
     def get_commits(self, author: str = None, since: str = None, per_page: int = None, page: int = None, until: str = None) -> typing.Sequence[Commit]:
@@ -64,7 +64,7 @@ class Repository:
                 }
             )
 
-            if not (js := res.json()):
+            if not (json_data := res.json()):
                 return
 
-            yield [Commit(cmt) for cmt in js]
+            yield [Commit(cmt) for cmt in json_data]
